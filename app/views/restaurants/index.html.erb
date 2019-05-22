@@ -1,20 +1,26 @@
 <h1>Restaurants</h1>
 
-  <div class="container">
-    <div class="row">
-        <% @restaurants.each do |restaurant| %>
-          <div class="card text-center m-2" style="width: 18rem;">
-            <h5 class="card-title"><%= link_to restaurant.name, restaurant_path(restaurant) %></h5>
-            <div class="card-body">
-              <h6 class="card-subtitle mb-2"><%= restaurant.category.capitalize %></h6>
-              <h6 class="card-subtitle mb-2 text-muted"><%= restaurant.address %></h6>
-              <h6 class="card-subtitle mb-2 text-muted"><%= restaurant.phone_number %></h6>
-            </div>
-            <p class="card-footer"><%= link_to "Review", new_restaurant_review_path(restaurant), class: "btn text-white", style:"background-color: #6ea4f7;" %></p>
-          </div>
-        <% end %>
-    </div>
+  <div class="card-columns">
+    <% @restaurants.each do |restaurant| %>
+
+    <%= link_to restaurant_path(restaurant) do %>
+
+      <div class="card">
+        <h3 class="card-header" style="background-color: #c2daff;"><%= restaurant.name %></h3>
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><%= restaurant.category.capitalize %></li>
+            <li class="list-group-item"><%= restaurant.address %></li>
+            <li class="list-group-item"><%= restaurant.phone_number %></li>
+          </ul>
+        </div>
+      </div>
+
+    <% end %>
+    <% end %>
   </div>
+
+<br>
 
 <%= link_to "Add a restaurant", new_restaurant_path,
   class: "btn text-white", style:"background-color: #6ea4f7;" %>

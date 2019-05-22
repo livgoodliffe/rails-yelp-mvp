@@ -1,16 +1,29 @@
 <h1><%= @restaurant.name %></h1>
 
-<h5><%= @restaurant.address %> | <%= @restaurant.phone_number %> | <%= @restaurant.category %></h5>
-
-<ul>
-
-  <% @restaurant.reviews.each do |review| %>
-    <li>
-      <%= review.content %> | <strong><%= review.rating %> stars</strong>
-    </li>
-  <% end %>
-
-</ul>
+<h5><%= @restaurant.address %> | <%= @restaurant.phone_number %> | <%= @restaurant.category.capitalize %></h5>
 
 
-<%= link_to "See all restaurants", restaurants_path %>
+<table class="table bg-white table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">⭐︎</th>
+      <th scope="col">Comment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @restaurant.reviews.each do |review| %>
+      <tr>
+        <td><%= review.rating %> stars</td>
+        <td><%= review.content %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= render 'reviews/new', restaurant: @restaurant %>
+
+<br>
+
+<%= link_to "See all restaurants", restaurants_path, class: "btn text-white", style:"background-color: #6ea4f7;" %>
