@@ -1,0 +1,17 @@
+<h1>New Restaurant</h1>
+
+<%= simple_form_for @restaurant do |f| %>
+  <%= f.input :name %>
+  <%= f.input :address %>
+  <%= f.input :phone_number %>
+  <%= f.input :category, collection: Restaurant::CATEGORIES %>
+
+  <%= f.submit "Add restaurant", class: "btn text-white", style:"background-color: #6ea4f7;"%>
+
+  <br>
+  <br>
+
+  <%= link_to "See all restaurants", restaurants_path,
+  class: "btn text-white", style:"background-color: #6ea4f7;"%>
+
+<% end %>
